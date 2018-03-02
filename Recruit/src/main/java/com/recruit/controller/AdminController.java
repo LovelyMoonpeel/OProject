@@ -1,7 +1,5 @@
 package com.recruit.controller;
 
-import java.util.Locale;
-
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -10,8 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.recruit.domain.AmainVO;
+import com.recruit.persistence.AmainDAO;
 import com.recruit.service.AmainService;
 
 @Controller
@@ -22,22 +23,40 @@ public class AdminController {
 	
 	@Inject
 	private AmainService service;
-	
-	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String mainGET(Locale locale, Model model) throws Exception {
-		return "admin/A_main";
+		
+	@RequestMapping(value = "/A_main", method = RequestMethod.GET)
+	public void mainGET(Model model) throws Exception {
+		logger.info("show all list.......");
+		model.addAttribute("list", service.listAll());
 	}
 	
-	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String modifyPOST(AmainVO vo, Model model) throws Exception {
+	@RequestMapping(value = "/A_modify", method = RequestMethod.GET)
+	public void modifyGET(@RequestParam("id") String id, Model model) throws Exception {
+//		model.addAttribute(service.read(id));
+		model.addAttribute("AmainVO", service.read(id));
+	}
 	
-//		logger.info("modify post...........");
-//		logger.info(vo.toString());
-//		
-//		service.modify(vo);
-//		
-//		model.addAttribute("result", "success");
+	
+	@RequestMapping(value = "/A_modify", method = RequestMethod.POST)
+	public String modifyPOST(AmainVO vo, RedirectAttributes rttr) throws Exception {
+	
+		logger.info("modify post...........");
+		logger.info(vo.toString());
 		
-		return "admin/A_modify";
+		service.modify(vo);
+		
+		rttr.addFlashAttribute("msg", "success");
+		
+		
+		return "redirect:/admin/A_main";
+	}
+	
+	@RequestMapping(value = "/remove", method = RequestMethod.POST)
+	public String remove(@RequestParam("id") String id, RedirectAttributes rttr) throws Exception{
+		service.remove(id);
+		
+		rttr.addFlashAttribute("msg", "success");
+		
+		return "redirect:/admin/A_main";
 	}
 }

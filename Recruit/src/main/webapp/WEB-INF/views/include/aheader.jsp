@@ -41,7 +41,7 @@
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#">퍼팩트 매칭</a> <sub><a
-					href="/admin/main" class="navbar-brand-sub">관리자 페이지</a></sub>
+					href="/admin/A_main" class="navbar-brand-sub">관리자 페이지</a></sub>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
@@ -71,7 +71,7 @@
 			<div class="col-md-3">
 				<p class="lead">관리자페이지</p>
 				<div class="list-group">
-					<a href="/admin/main" class="list-group-item">개인관리</a>
+					<a href="/admin/A_main" class="list-group-item">개인관리</a>
 					<a href="#" class="list-group-item">기업관리</a>
 					<a href="#"	class="list-group-item">통계</a>
 					<a href="#" class="list-group-item">관리자정보수정</a>

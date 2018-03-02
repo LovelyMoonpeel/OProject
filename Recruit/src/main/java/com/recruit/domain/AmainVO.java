@@ -2,6 +2,8 @@ package com.recruit.domain;
 
 import java.util.Date;
 
+
+
 public class AmainVO {
 	
 	private String id;
@@ -44,7 +46,7 @@ public class AmainVO {
 	public String toString() {
 		return "AmainVO [id=" + id + ", pw=" + pw + ", pname=" + pname + ", email=" + email + ", birth=" + birth + "]";
 	}
-
+	
 
 	
 }

@@ -15,8 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<update id="update">
 		update project.tbluser set
-		pw = #{pw}, pname =
-		#{pname}, email = #{email}, birth = #{birth}
+		pw = #{pw}, pname = #{pname}, email = #{email}, birth = #{birth}
 		where id = #{id}
 	</update>
 
@@ -24,12 +23,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from project.tbluser where id = #{id}
 	</delete>
 
-	<select id="listAll">
+	<select id="listAll" resultType="com.recruit.domain.AmainVO">
 	<![CDATA[
 	select
-		id, pw, pname, email, birth
+		id, pname, email, birth
 	from
 		project.tbluser
+	where
+		cname is null
 	order by id
 	]]>
 	</select>
