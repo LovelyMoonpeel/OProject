@@ -22,7 +22,7 @@ public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
 	@Inject
-	private AmainService service;
+	private AmainService service; //hello
 		
 	@RequestMapping(value = "/A_main", method = RequestMethod.GET)
 	public void mainGET(Model model) throws Exception {
